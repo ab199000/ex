@@ -1,0 +1,53 @@
+#include "pch.h"
+#include <gtest/gtest.h>
+#include <Windows.h>
+#include "../../triangle/triangle/Header.h"
+
+using namespace std;
+
+TEST(TestCaseName, TestSquaer) {
+	EXPECT_EQ(square_with_check(3, 3, 2), float(2.83));
+	EXPECT_EQ(square_with_check(2, 3, 2), float(1.98));
+	EXPECT_EQ(square_with_check(2, 4, 5), float(3.8));
+}
+
+TEST(TestCaseName, TestTypeTriangle) {
+	EXPECT_EQ(type_triangle_with_check(3, 3, 2), "Равнобедренный треугольник");
+	EXPECT_EQ(type_triangle_with_check(2, 3, 2), "Равнобедренный треугольник");
+	EXPECT_EQ(type_triangle_with_check(2, 4, 5), "Обычный треугольник");
+	EXPECT_EQ(type_triangle_with_check(4, 4, 4), "Равносторонний треугольник");
+}
+
+
+TEST(TestCaseName, TestTypeTriangleV2) {
+	EXPECT_EQ(type_triangle_v2_with_check(3, 3, 2), "Остроугольный треугольник");
+	EXPECT_EQ(type_triangle_v2_with_check(2, 3, 2), "Тупоугольный треугольник");
+	EXPECT_EQ(type_triangle_v2_with_check(3, 4, 5), "Прямоугольный треугольник");
+}
+
+TEST(TestCaseName, TestOnVar) {
+	EXPECT_EQ(check_positive_side(-1, 2, 3), false);
+	EXPECT_EQ(check_positive_side(1, 2, -3), false);
+	EXPECT_EQ(check_positive_side(1, 2, 0), false);
+	EXPECT_EQ(check_positive_side(1, 0, -3), false);
+	EXPECT_EQ(check_positive_side(1, 2, 2), true);
+}
+
+TEST(TestCaseName, TestTwo_side_sum) {
+	EXPECT_EQ(two_side_sum(1, 0, 2), false);
+	EXPECT_EQ(two_side_sum(1, 2, 2), true);
+	EXPECT_EQ(two_side_sum(1, 6, 2), false);
+	EXPECT_EQ(two_side_sum(6, 2, 2), false);
+}
+
+
+int main(int argc, char** arvg) {
+
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	testing::InitGoogleTest(&argc, arvg);
+	return RUN_ALL_TESTS();
+
+}
+
